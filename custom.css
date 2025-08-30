@@ -25,3 +25,4 @@
 .message [class*="badge"] {
   display: none !important;
 }
+/* v2 sanity check - should appear when fetched */
