@@ -1,7 +1,5 @@
-# Tiny Dockerfile that just runs Open WebUI
-FROM ghcr.io/open-webui/open-webui:main
+# Pin to a specific Open WebUI version (instead of :main)
+FROM ghcr.io/open-webui/open-webui:0.6.26
 
-# Open WebUI listens on 8080
-EXPOSE 8080
-
-# trigger rebuild to pull latest image
+# Copy our CSS override into Open WebUI’s static assets
+COPY custom.css /app/static/custom.css

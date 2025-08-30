@@ -1,0 +1,10 @@
+/* Hide knowledge source citations like "1.pdf" */
+.kb-source,
+.citation,
+.source,
+.prose .text-xs a[href*="/knowledge/"],
+.prose .text-xs a[href*="/files/"],
+.prose .text-xs a[href*="/api/v1/knowledge"],
+.prose .text-xs a[href*="/api/files"] {
+  display: none !important;
+}
