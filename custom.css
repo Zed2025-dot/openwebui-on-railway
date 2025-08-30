@@ -1,47 +1,27 @@
-/* --- sanity tag so we know CSS is loaded --- */
-body::after{
-  content:"custom.css active";
-  position:fixed; bottom:6px; right:8px;
-  font:11px/1.2 monospace; opacity:.25; pointer-events:none;
-}
-
-/* --- Hide sources/provenance blocks in assistant messages (broad net) --- */
-[data-role="assistant"] [class*="source"],
-[data-role="assistant"] [class*="Source"],
-[data-role="assistant"] [class*="provenance"],
-[data-role="assistant"] [class*="Provenance"],
-[data-role="assistant"] [class*="reference"],
-[data-role="assistant"] [class*="Reference"],
-[data-role="assistant"] [class*="attachment"],
-[data-role="assistant"] [class*="Attachment"],
-[data-role="assistant"] [data-testid*="source"],
-[data-role="assistant"] [data-testid*="Source"],
-[data-role="assistant"] [data-testid*="provenance"],
-[data-role="assistant"] [data-testid*="Provenance"],
-[data-role="assistant"] .sources,
-[data-role="assistant"] .source,
-[data-role="assistant"] .references,
-[data-role="assistant"] .reference,
-[data-role="assistant"] .provenance,
-[data-role="assistant"] .attachments {
+/* Hide source/citation chips and any “file tag” blobs under assistant messages */
+.message :where(.sources, .source, .citation, .source-chip, .file-tag) {
   display: none !important;
 }
 
-/* --- Also hide file-chip style links like "1.pdf" inside assistant messages --- */
-[data-role="assistant"] a[href$=".pdf"],
-[data-role="assistant"] a[href*="/knowledge/"],
-[data-role="assistant"] a[download] {
+/* Some builds use a badge container */
+.message .source-badges,
+.message .badges,
+.message .attachments {
   display: none !important;
 }
 
-/* --- If there’s a thin divider right before “Sources”, hide that row too --- */
-[data-role="assistant"] hr + div,
-[data-role="assistant"] .divider + div[class*="source"] {
+/* If a footer wrapper exists for citations */
+.message footer,
+.message .message-footer {
   display: none !important;
 }
 
-/* --- Nuclear fallback: hide a trailing line that is just a chip/link --- */
-[data-role="assistant"] .prose > p:last-child:has(a),
-[data-role="assistant"] .prose > div:last-child:has(a) {
+/* Belt-and-suspenders: common variants seen in recent builds */
+.message [data-testid="sources"],
+.message [data-testid="source-chip"],
+.message [class*="source"],
+.message [class*="citation"],
+.message [class*="attachment"],
+.message [class*="badge"] {
   display: none !important;
 }
